@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Dropdown from "./components/Dropdown/Dropdown";
+import Footer from './components/Footer/Footer';
+import Hero from "./components/Hero/Hero";
+import InfoSection from "./components/Infosection/InfoSection";
+import InteriorSection from './components/InteriorSection/InteriorSection';
+import ModernDesign from './components/ModernDesignSection/ModernDesignSection';
+import Navbar from "./components/Navbar/Navbar";
+import NewHomes from './components/NewHomes/NewHomes';
+import { InfoData, InfoDataThree, InfoDataTwo, InfoDataFour, InfoDataFive } from './data/InfoData';
+import { SliderData } from './data/SliderData';
+import GlobalStyle from "./globalStyles";
+
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Navbar />
+      <Dropdown isOpen={isOpen} toggle={toggle} />
+      <Hero slides={SliderData} />
+      <InfoSection {...InfoData }  />
+      <NewHomes {...InfoDataThree}/>
+      <InteriorSection {...InfoDataFour} />
+      <ModernDesign {...InfoDataTwo} />
+      <Footer {...InfoDataFive}/>
+    </>
   );
 }
 
